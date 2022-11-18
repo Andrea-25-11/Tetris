@@ -397,7 +397,7 @@ class Game {
                     color: Game.EMPTY_COLOR,
                     taken: false,
                 };
-                // Overlap existing piece if any
+                // Superponer pieza existente si hay alguna.
                 if (this.existingPieces[y][x].taken) {
                     this.board[y][x].color = this.existingPieces[y][x].color;
                 }
@@ -405,7 +405,7 @@ class Game {
         }
     }
     //21 método
-    //
+    //superposición de la figura actual en el tablero de juego: Éste método superpone la pieza actualmente dibujada en el tablero sobre alguna pieza existente o en el fondo del tablero, dandole la ubicación en "Y" y "X" , también especifica que cuando esto ocurra se mantenga el color aleatorio de la pieza para poder distinguirse en el tablero.
     overlapCurrentFigureOnGameBoard() {
         if (!this.currentFigure) return;
         for (const point of this.currentFigure.getPoints()) {
@@ -414,6 +414,7 @@ class Game {
     }
 
     //22 método
+    //sincronizar piezas existentes con tablero: éste método llama las funciones de limpiar el tablero de juego(si se pierde el juego lo deja del color inicial lo que el usuario mirará sera el tablero vacío para jugar nuevamente, si el usuario no ha persido, proyecta la siguiente pieza y mantiene dibujadas las piezas existentes en el fondo del tablero) y tambien llama la funcion de superpones la figura actual, dejando ver en el lablero las que ya se han posicionado.
     syncExistingPiecesWithBoard() {
         this.cleanGameBoardAndOverlapExistingPieces();
         this.overlapCurrentFigureOnGameBoard();
@@ -625,9 +626,9 @@ class Game {
         return absoluteX < 0 || absoluteX > Game.COLUMNS - 1 || absoluteY < 0 || absoluteY > Game.ROWS - 1;
     }
 
-    // It returns true even if the point is not valid (for example if it is out of limit, because it is not the function's responsibility)
+    // 
     //33 método
-    //
+    //Devuelve verdadero incluso si el punto no es válido (por ejemplo, si está fuera de límite, porque no es responsabilidad de la función)
     isEmptyPoint(x, y) {
         if (!this.existingPieces[y]) return true;
         if (!this.existingPieces[y][x]) return true;
@@ -639,9 +640,10 @@ class Game {
     }//verifica la posicion de la pieza tanto en x como en y asi declara que la ficha tiene una posicion tomada para que no se superpongan
 
     /**
-     * Check if a point (in the game board) is valid to put another point there.
-     * @param point the point to check, with relative coordinates
-     * @param points an array of points that conforms a figure
+     * 
+Comprueba si un punto (en el tablero de juego) es válido para poner otro punto allí.
+     * @param point el punto a comprobar, con coordenadas relativas
+     * @param points un arreglo de puntos que conforma una figura
      */
     //34 método
     isValidPoint(point, points) {
@@ -681,7 +683,7 @@ class Game {
         return true;
     }
     //37 método
-    ////Se evalua si cada uno de los cuadritos que conforma el tetromino pueden moverse hacia abajo, si es true va a aumentar y en 1, de lo contrario, no se hace dicho movimiento si no cuenta con el espacio para ello, retorna false.
+    //Se evalua si cada uno de los cuadritos que conforma el tetromino pueden moverse hacia abajo, si es true va a aumentar y en 1, de lo contrario, no se hace dicho movimiento si no cuenta con el espacio para ello, retorna false.
     figureCanMoveDown() {
         if (!this.currentFigure) return false;
         for (const point of this.currentFigure.getPoints()) {

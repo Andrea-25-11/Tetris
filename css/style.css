@@ -41,26 +41,29 @@ h1.titleTetris{
     font-size: 50px;
     padding-top: 10px;
     margin: 30px;
-    text-shadow: #000 5px 5px;
     font-family: 'Risque', sans-serif;
+    text-shadow:  #000 10px;
 }
 h2.h2Tetris{
     font-size: 35px;
+<<<<<<< HEAD
     padding: 30px;
+=======
+    padding-top: 20px;
+>>>>>>> 8ea396eeb9cf6e6f80b97d775a80b736f55f18d5
     margin-top: 30px;
-    text-shadow: #000 5px 5px;
     font-family: 'Risque', sans-serif;
 }
 .col-12{
     display: grid;
-    grid-template-columns: 70% 10%;
+    grid-template-columns: 30% 10%;
     margin: auto;
-    align-items: center;
-    justify-items: center;
-    text-align: center;
+    justify-content: center;
 }
+
 .fa{
     color:#79018C;
+    padding: 10px 15px;
 }
 footer{
     margin: 20px 0px 20px 0px;
@@ -68,6 +71,7 @@ footer{
     text-align: center;
 
 }
+<<<<<<< HEAD
 /* ---------ESTILOS PARA CELULAR */
 @media (max-width: 480px){
     h1.titleTetris{
@@ -134,6 +138,9 @@ footer{
     margin: 0px;
     text-shadow: #000 5px 5px;
     }
+=======
+@media (max-width: 850px) and (min-width: 481px) {
+>>>>>>> 8ea396eeb9cf6e6f80b97d775a80b736f55f18d5
    .mt-2{
       display: flex;
       flex-direction: row;
@@ -149,24 +156,21 @@ footer{
    }
    #reset{
       width: 90px;
-      height: 40px;
-      font-size: 20px;
+      height: 50px;
    }
    button{
-      padding: 6px;
+      padding: 10px;
       display: flex;
       flex-direction: column;
-      width: 35px;
-      height: 40px;
-      font-size: 25px;
+      width: 60px;
+      height: 50px;
+      font-size: 30px;
       border-radius: 5px;
+      gap:10px;
       margin: 10px 0px 0px 5px;
-      align-items: center;
+      align-content: center;
    }
    #canvas{
       width: 80%;
-   }
-   footer{
-    font-size:18px;
    }
 }
