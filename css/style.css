@@ -46,7 +46,7 @@ h1.titleTetris{
 }
 h2.h2Tetris{
     font-size: 35px;
-    padding: 20px;
+    padding: 30px;
     margin-top: 30px;
     text-shadow: #000 5px 5px;
     font-family: 'Risque', sans-serif;
@@ -70,15 +70,15 @@ footer{
 }
 /* ---------ESTILOS PARA CELULAR */
 @media (max-width: 480px){
-    .titleTetris{
-    font-size: 35px;
+    h1.titleTetris{
+    font-size: 25px;
     padding-top: 10px;
     margin: 10px;
     text-shadow: #000 5px 5px;
     }
-    .h2Tetris{
-    font-size: 30px;
-    padding: 8px 0px;
+    h2.h2Tetris{
+    font-size: 20px;
+    padding: 12px 0px;
     margin: 0px;
     text-shadow: #000 5px 5px;
     }
@@ -122,15 +122,15 @@ footer{
  }
 /* ---------RESPONSIVE PARA TABLET */
 @media (min-width: 481px) and (max-width: 850px){
-    .titleTetris{
-    font-size: 40px;
+    h1.titleTetris{
+    font-size: 35px;
     padding-top: 10px;
     margin: 10px;
     text-shadow: #000 5px 5px;
     }
-    .h2Tetris{
-    font-size: 35px;
-    padding: 12px 0px;
+    h2.h2Tetris{
+    font-size: 30px;
+    padding: 15px 0px;
     margin: 0px;
     text-shadow: #000 5px 5px;
     }

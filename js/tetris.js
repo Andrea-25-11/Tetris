@@ -2,9 +2,9 @@
 //El static no se asocia a un objeto si no a una clase
 class Game { 
     // Square length in pixels
-    static SQUARE_LENGTH = screen.width > 420 ? 25 : 8; //la medida del cuadrado depende del tamaño de la pantalla
+    static SQUARE_LENGTH = screen.width > 420 ? 27 : 8; //la medida del cuadrado depende del tamaño de la pantalla
     //porejemplosi la pantalla es mayor a 420px va a ser de 25px o si no de 10
-    static COLUMNS = 12;
+    static COLUMNS = 15;
     static ROWS = 25;
     // por medio de este codigo se detemina el ancho y alto del tablero de tetris , teniendo en cuenta el ancho de la pantalla y el numero de filas y columnas
     static CANVAS_WIDTH = this.SQUARE_LENGTH * this.COLUMNS;
@@ -291,10 +291,8 @@ class Game {
     }
 
     //18 método
-    //REVISAR Se agrega la animacion de cuando se elimina la fila, el sonido que se reproduce al eliminarse la fila, el cambio de color, el canplay actua de manera .
+    //Se verifica si hay lugar a que se elimine una fila completa, si es asì reproduce el sonido de succes y la fila eliminada cambia de color de agregando así la animacion. Luego se pausa el sonido del succes y se elimina la fila completada.Luego hace un recorrido de las filas y las columnas y demarca el lìmite del marco para posicionar las fichas que van cayendo.
     verifyAndDeleteFullRows() {
-        // Here be dragons
-
         const yCoordinates = this.getPointsToDelete();
         if (yCoordinates.length <= 0) return;
         this.addScore(yCoordinates);
@@ -303,11 +301,11 @@ class Game {
         this.changeDeletedRowColor(yCoordinates);
         this.canPlay = false;
 
-        setTimeout(() => { //es una promesa que se ucmple despues de que el delete row animation 
+        setTimeout(() => { //es una promesa que se ucmple despues de que el delete row animation se ejecuta
             this.sounds.success.pause();
             this.removeRowsFromExistingPieces(yCoordinates);
             this.syncExistingPiecesWithBoard();
-            const invertedCoordinates = Array.from(yCoordinates); //crea una copia del array (OMG)
+            const invertedCoordinates = Array.from(yCoordinates); //crea una copia del array
             // Now the coordinates are in descending order
             invertedCoordinates.reverse();
 
@@ -317,7 +315,7 @@ class Game {
                         if (y < yCoordinate) {
                             let counter = 0;
                             let auxiliarY = y;
-                            while (this.isEmptyPoint(x, auxiliarY + 1) && !this.absolutePointOutOfLimits(x, auxiliarY + 1) && counter < yCoordinates.length) {//HACE Q CAIGA LENTAMENTE LA FICHA, MIRA EL PUNTO de contacto con el marco del juego
+                            while (this.isEmptyPoint(x, auxiliarY + 1) && !this.absolutePointOutOfLimits(x, auxiliarY + 1) && counter < yCoordinates.length) {//Mira el punto de contacto con el marco del juego
                                 this.existingPieces[auxiliarY + 1][x] = this.existingPieces[auxiliarY][x];
                                 this.existingPieces[auxiliarY][x] = {
                                     color: Game.EMPTY_COLOR,
@@ -789,10 +787,10 @@ class Tetromino {
                 point.color = randomColor;
             });
         });
-        this.incrementRotationIndex();//como se cambia la rotacion se incrementa el indice de rotacion AVERIGUAR
+        this.incrementRotationIndex();//como se cambia la rotacion se incrementa el indice de rotacion 
     }
     
-    //Devulve los puntos del tetromino
+    //Devuelve los puntos del tetromino
     getPoints() {
         return this.points;
     }
