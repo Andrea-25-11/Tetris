@@ -12,7 +12,7 @@ class Game {
     //Color del fondo del tablero
     static EMPTY_COLOR = "#ffffff";
     //Color de los bordes del tablero
-    static BORDER_COLOR = "#b03396";
+    static BORDER_COLOR = "#dedddd";
     //Color a aplicar cuando se elimina una fila completa del tablero
     static DELETED_ROW_COLOR = "#9A0680";
     // Tiempo en que se demora en aparecer la otra ficha establecido en microsegundos
@@ -291,10 +291,8 @@ class Game {
     }
 
     //18 método
-    //REVISAR Se agrega la animacion de cuando se elimina la fila, el sonido que se reproduce al eliminarse la fila, el cambio de color, el canplay actua de manera .
+    //Se verifica si hay lugar a que se elimine una fila completa, si es asì reproduce el sonido de succes y la fila eliminada cambia de color de agregando así la animacion. Luego se pausa el sonido del succes y se elimina la fila completada.Luego hace un recorrido de las filas y las columnas y demarca el lìmite del marco para posicionar las fichas que van cayendo.
     verifyAndDeleteFullRows() {
-        // Here be dragons
-
         const yCoordinates = this.getPointsToDelete();
         if (yCoordinates.length <= 0) return;
         this.addScore(yCoordinates);
@@ -303,21 +301,21 @@ class Game {
         this.changeDeletedRowColor(yCoordinates);
         this.canPlay = false;
 
-        setTimeout(() => {
+        setTimeout(() => { //es una promesa que se ucmple despues de que el delete row animation se ejecuta
             this.sounds.success.pause();
             this.removeRowsFromExistingPieces(yCoordinates);
             this.syncExistingPiecesWithBoard();
-            const invertedCoordinates = Array.from(yCoordinates);
+            const invertedCoordinates = Array.from(yCoordinates); //crea una copia del array
             // Now the coordinates are in descending order
             invertedCoordinates.reverse();
 
-            for (let yCoordinate of invertedCoordinates) {
+            for (let yCoordinate of invertedCoordinates) { //HACE UN RECORRIDO de izq a derecha de las filas y luego de las columnas
                 for (let y = Game.ROWS - 1; y >= 0; y--) {
                     for (let x = 0; x < this.existingPieces[y].length; x++) {
                         if (y < yCoordinate) {
                             let counter = 0;
                             let auxiliarY = y;
-                            while (this.isEmptyPoint(x, auxiliarY + 1) && !this.absolutePointOutOfLimits(x, auxiliarY + 1) && counter < yCoordinates.length) {
+                            while (this.isEmptyPoint(x, auxiliarY + 1) && !this.absolutePointOutOfLimits(x, auxiliarY + 1) && counter < yCoordinates.length) {//Mira el punto de contacto con el marco del juego
                                 this.existingPieces[auxiliarY + 1][x] = this.existingPieces[auxiliarY][x];
                                 this.existingPieces[auxiliarY][x] = {
                                     color: Game.EMPTY_COLOR,
@@ -794,7 +792,7 @@ class Tetromino {
         this.incrementRotationIndex();//como se cambia la rotacion se incrementa el indice de rotacion 
     }
     
-    //Devulve los puntos del tetromino
+    //Devuelve los puntos del tetromino
     getPoints() {
         return this.points;
     }
