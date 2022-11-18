@@ -8,10 +8,11 @@ body{
     background: linear-gradient(0deg, rgba(22,0,64,1) 0%, rgba(76,0,112,1) 52%, rgba(154,6,128,1) 100%);
     height: 100%;
     color: #fff;
+    width: 100%;
 }
 main{
 background-image: url(/img/tetriss.png);
-background-size:40% ;
+background-size:30% ;
 }
 ul{
     list-style: none;
@@ -26,6 +27,8 @@ button{
     margin-top: 10px;
     cursor: pointer;
     width: 90px;
+    justify-content: space-around;
+    align-items: center;
 }
 #reset{
     font-size: 20px;
@@ -40,21 +43,26 @@ h2{
 h1.titleTetris{
     font-size: 50px;
     padding-top: 10px;
-    margin: 30px;
+    margin-top: 30px;
     font-family: 'Risque', sans-serif;
-    text-shadow:  #000 10px;
+    text-shadow: #000 5px 5px;
 }
 h2.h2Tetris{
     font-size: 35px;
-    padding: 30px;
+    padding-top: 30px;
     margin-top: 30px;
     font-family: 'Risque', sans-serif;
+    text-shadow: #000 5px 5px;
 }
+
 .col-12{
     display: grid;
-    grid-template-columns: 30% 10%;
+    grid-template-columns: 40% 12%;
     margin: auto;
-    justify-content: center;
+    column-gap: 12%;
+    justify-items: center;
+   justify-content: space-evenly;
+   text-align: center;
 }
 
 .fa{
@@ -62,7 +70,10 @@ h2.h2Tetris{
     padding: 10px 15px;
 }
 footer{
-    margin: 20px 0px 20px 0px;
+   margin-top: 20px;
+   background-color:#620470; 
+   font-family: 'Risque', sans-serif; 
+    padding: 20px 0px 20px 0px;
     font-size: 30px;
     text-align: center;
 }
@@ -70,8 +81,8 @@ footer{
 @media (max-width: 480px){
     h1.titleTetris{
     font-size: 25px;
-    padding-top: 10px;
-    margin: 10px;
+    padding: 1%;
+    margin: 1%;
     text-shadow: #000 5px 5px;
     }
     h2.h2Tetris{
@@ -91,7 +102,7 @@ footer{
        align-items: center;
     }
     body{
-       margin: 1%;
+       margin: 0;
     }
     #reset{
        width: 60px;
@@ -99,7 +110,9 @@ footer{
        font-size:12px;
 
     }
-    button{
+
+    button.btn {
+      padding: 8px 10px;
        display: flex;
        flex-direction: column;
        width: 25px;
@@ -108,7 +121,11 @@ footer{
        border-radius: 5px;
        gap:8px;
        margin: 10px 0px 0px 5px;
+       justify-content: space-around;
        align-items: center;
+    }
+    button{
+      padding: 10px 15px;
     }
     #canvas{
        width: 80%;
@@ -120,13 +137,13 @@ footer{
 /* ---------RESPONSIVE PARA TABLET */
 @media (min-width: 481px) and (max-width: 850px){
     h1.titleTetris{
-    font-size: 35px;
+    font-size: 40px;
     padding-top: 10px;
     margin: 10px;
     text-shadow: #000 5px 5px;
     }
     h2.h2Tetris{
-    font-size: 30px;
+    font-size: 35px;
     padding: 15px 0px;
     margin: 0px;
     text-shadow: #000 5px 5px;
@@ -142,14 +159,14 @@ footer{
       align-items: center;
    }
    body{
-      margin: 5%;
+      margin: 0;
    }
    #reset{
       width: 90px;
       height: 50px;
    }
-   button{
-      padding: 10px;
+   button.btn{
+      padding: 10px 15px;
       display: flex;
       flex-direction: column;
       width: 60px;
@@ -159,7 +176,11 @@ footer{
       gap:10px;
       margin: 10px 0px 0px 5px;
       align-content: center;
+      justify-content: space-around;
    }
+   button{
+      padding: 10px 15px;
+    }
    #canvas{
       width: 80%;
    }

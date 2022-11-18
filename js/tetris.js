@@ -2,7 +2,7 @@
 //El static no se asocia a un objeto si no a una clase
 class Game { 
     // Square length in pixels
-    static SQUARE_LENGTH = screen.width > 420 ? 27 : 8; //la medida del cuadrado depende del tamaño de la pantalla
+    static SQUARE_LENGTH = screen.width > 420 ? 27 : 27; //la medida del cuadrado depende del tamaño de la pantalla
     //porejemplosi la pantalla es mayor a 420px va a ser de 25px o si no de 10
     static COLUMNS = 15;
     static ROWS = 25;
@@ -628,7 +628,8 @@ class Game {
 
     // 
     //33 método
-    //Devuelve verdadero incluso si el punto no es válido (por ejemplo, si está fuera de límite, porque no es responsabilidad de la función)
+    //Este método realiza la verificación de las piezas existentes en “y” y en “x” señalando que si no hay piezas existentes se retorne true, de lo contrario, si sí hay piezas en “y” o “x” se entienda que están tomadas (taken) y se retorne falso.
+
     isEmptyPoint(x, y) {
         if (!this.existingPieces[y]) return true;
         if (!this.existingPieces[y][x]) return true;
@@ -646,6 +647,7 @@ Comprueba si un punto (en el tablero de juego) es válido para poner otro punto 
      * @param points un arreglo de puntos que conforma una figura
      */
     //34 método
+    //Verifica la posición de la pieza tanto en x como en y así declara que la ficha tiene una posición tomada para que no se superpongan unas con otras.
     isValidPoint(point, points) {
         const emptyPoint = this.isEmptyPoint(this.globalX + point.x, this.globalY + point.y);
         const hasSameCoordinateOfFigurePoint = points.findIndex(p => {
