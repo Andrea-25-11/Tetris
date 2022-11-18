@@ -12,7 +12,7 @@ class Game {
     //Color del fondo del tablero
     static EMPTY_COLOR = "#ffffff";
     //Color de los bordes del tablero
-    static BORDER_COLOR = "#b03396";
+    static BORDER_COLOR = "#dedddd";
     //Color a aplicar cuando se elimina una fila completa del tablero
     static DELETED_ROW_COLOR = "#9A0680";
     // Tiempo en que se demora en aparecer la otra ficha establecido en microsegundos
@@ -303,21 +303,21 @@ class Game {
         this.changeDeletedRowColor(yCoordinates);
         this.canPlay = false;
 
-        setTimeout(() => {
+        setTimeout(() => { //es una promesa que se ucmple despues de que el delete row animation 
             this.sounds.success.pause();
             this.removeRowsFromExistingPieces(yCoordinates);
             this.syncExistingPiecesWithBoard();
-            const invertedCoordinates = Array.from(yCoordinates);
+            const invertedCoordinates = Array.from(yCoordinates); //crea una copia del array (OMG)
             // Now the coordinates are in descending order
             invertedCoordinates.reverse();
 
-            for (let yCoordinate of invertedCoordinates) {
+            for (let yCoordinate of invertedCoordinates) { //HACE UN RECORRIDO de izq a derecha de las filas y luego de las columnas
                 for (let y = Game.ROWS - 1; y >= 0; y--) {
                     for (let x = 0; x < this.existingPieces[y].length; x++) {
                         if (y < yCoordinate) {
                             let counter = 0;
                             let auxiliarY = y;
-                            while (this.isEmptyPoint(x, auxiliarY + 1) && !this.absolutePointOutOfLimits(x, auxiliarY + 1) && counter < yCoordinates.length) {
+                            while (this.isEmptyPoint(x, auxiliarY + 1) && !this.absolutePointOutOfLimits(x, auxiliarY + 1) && counter < yCoordinates.length) {//HACE Q CAIGA LENTAMENTE LA FICHA, MIRA EL PUNTO de contacto con el marco del juego
                                 this.existingPieces[auxiliarY + 1][x] = this.existingPieces[auxiliarY][x];
                                 this.existingPieces[auxiliarY][x] = {
                                     color: Game.EMPTY_COLOR,
